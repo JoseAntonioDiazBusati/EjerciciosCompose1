@@ -12,9 +12,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
-
 @Composable
-fun Ejercicio1(){
+
+fun Ejercicio2(){
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -22,8 +22,8 @@ fun Ejercicio1(){
     ){
         Box(
             modifier = Modifier
-                .width(50.dp)
-                .height(50.dp)
+                .width(250.dp)
+                .height(150.dp)
                 .background(Color.Cyan)
                 .align(Alignment.Center)
         )
@@ -36,6 +36,6 @@ fun main() = application {
         title = "Ejercicio 1 Compose",
         state = windowState
     ){
-        Ejercicio1()
+        Ejercicio2()
     }
 }
