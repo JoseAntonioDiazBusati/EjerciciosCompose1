@@ -30,7 +30,7 @@ fun Ejercicio1(){
     }
 }
 fun main() = application {
-    val windowState = rememberWindowState(size = DpSize(600.dp,900.dp))
+    val windowState = rememberWindowState(size = DpSize(500.dp,800.dp))
     Window(
         onCloseRequest = ::exitApplication,
         title = "Ejercicio 1 Compose",
