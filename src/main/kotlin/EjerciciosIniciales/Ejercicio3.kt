@@ -1,8 +1,7 @@
-import androidx.compose.desktop.ui.tooling.preview.Preview
+package EjerciciosIniciales
+
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -15,72 +14,68 @@ import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 
 @Composable
-@Preview
-fun Ejercicio4() {
-    Row(
+fun Ejercicio3() {
+    Column(
         modifier = Modifier.fillMaxSize(),
-        horizontalArrangement = Arrangement.Center,
-        verticalAlignment = Alignment.Bottom
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Subrow1(color = Color.Red)
-        Spacer(modifier = Modifier.width(20.dp))
-        Subrow2(color = Color.Blue)
-        Spacer(modifier = Modifier.width(20.dp))
-        Subrow3(color = Color.Red)
-        Spacer(modifier = Modifier.width(20.dp))
-        Subrow4(color = Color.Blue)
+        Subcolumna1(color = Color.Red)
+        Subcolumna2(color = Color.Gray)
+        Subcolumna3(color = Color.Cyan)
+        Subcolumna4(color = Color.Green)
     }
 }
 
 @Composable
-fun Subrow1(color: Color) {
+fun Subcolumna1(color: Color) {
     Box(
         modifier = Modifier
             .width(100.dp)
-            .height(400.dp)
-            .border(2.dp, color = color),
+            .height(150.dp)
+            .background(color),
         contentAlignment = Alignment.TopCenter
-    ) {
-        Text(text = "Ejemplo1")
+    ){
+        Text("Ejemplo1")
     }
 }
 
 @Composable
-fun Subrow2(color: Color) {
+fun Subcolumna2(color: Color) {
     Box(
         modifier = Modifier
             .width(100.dp)
             .height(250.dp)
-            .border(2.dp, color = color),
+            .background(color),
         contentAlignment = Alignment.TopCenter
-    ) {
-        Text(text = "Ejemplo2")
+    ){
+        Text("Ejemplo2")
     }
 }
 
 @Composable
-fun Subrow3(color: Color) {
+fun Subcolumna3(color: Color) {
     Box(
         modifier = Modifier
             .width(100.dp)
-            .height(125.dp)
-            .border(2.dp, color = color),
+            .height(250.dp)
+            .background(color),
         contentAlignment = Alignment.TopCenter
-    ) {
-        Text(text = "Ejemplo3")
+    ){
+        Text("Ejemplo3")
     }
 }
 
 @Composable
-fun Subrow4(color: Color) {
+fun Subcolumna4(color: Color) {
     Box(
         modifier = Modifier
             .width(100.dp)
-            .height(25.dp)
-            .border(2.dp, color = color),
+            .height(150.dp)
+            .background(color),
         contentAlignment = Alignment.TopCenter
-    ) {
-        Text(text = "Ejemplo4")
+    ){
+        Text("Ejemplo4")
     }
 }
 
@@ -88,9 +83,9 @@ fun main() = application {
     val windowState = rememberWindowState(size = DpSize(500.dp,800.dp))
     Window(
         onCloseRequest = ::exitApplication,
-        title = "Ejercicio 4 Compose",
+        title = "Ejercicio 3 Compose",
         state = windowState
     ){
-        Ejercicio4()
+        Ejercicio3()
     }
 }
