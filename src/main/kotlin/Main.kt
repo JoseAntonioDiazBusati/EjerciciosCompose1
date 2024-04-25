@@ -49,6 +49,6 @@ fun main() = application {
         title = "Ejemplos para practicar",
         state = windowState
     ){
-        MainScreen()
+        LoginScreen()
     }
 }

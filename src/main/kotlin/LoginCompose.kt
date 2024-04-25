@@ -1,77 +1,78 @@
 import androidx.compose.desktop.ui.tooling.preview.Preview
-import androidx.compose.foundation.background
-import androidx.compose.foundation.interaction.HoverInteraction
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Button
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.unit.DpSize
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.Window
-import androidx.compose.ui.window.application
-import androidx.compose.ui.window.rememberWindowState
-import kotlin.system.exitProcess
 
 
+@Composable
 @Preview
-fun main()= application {
-    val windowState = rememberWindowState(size = DpSize(1200.dp,800.dp))
-    Window(
-        onCloseRequest = ::exitApplication,
-        title = "Login",
-        state = windowState
-    ){
-        PantallaInicio()
+fun LoginScreen() {
+
+    var user by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    val buttonEnabled = user.isNotBlank() && password.isNotBlank()
+
+    MaterialTheme {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(10.dp, alignment = Alignment.CenterVertically),
+            modifier = Modifier.fillMaxSize()
+        ) {
+            Usuario(user){ user = it }
+
+            Password(password){ password = it }
+
+            Button(
+                onClick = {
+                    user = ""
+                    password = ""
+                },
+                enabled = buttonEnabled
+            ) {
+                Text(text = "Login")
+            }
+        }
     }
+}
+
+
+@Composable
+fun Usuario(user:String, onUserChange:(String)-> Unit){
+    OutlinedTextField(
+        value = user,
+        label = { Text(text = "Nombre del usuario")},
+        onValueChange = onUserChange
+    )
 }
 
 @Composable
-fun PantallaInicio(){
-    val usuario = remember { mutableStateOf(TextFieldValue("")) }
-    val password = remember { mutableStateOf(TextFieldValue("")) }
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ){
-        OutlinedTextField(
-            value = usuario.value,
-            label = { Text(text = "Nombre del usuario")},
-            onValueChange = { usuario.value = it },
-            modifier = Modifier
-                .width(200.dp)
-                .height(75.dp)
-        )
-        OutlinedTextField(
-            value = password.value,
-            label = { Text(text = "Introduzca contraseña")},
-            onValueChange = { password.value = it },
-            visualTransformation = PasswordVisualTransformation(),
-            modifier = Modifier
-                .width(200.dp)
-                .height(75.dp)
-        )
-        Button(
-            onClick ={},
-        ){
-            Text(text = "Login")
+fun Password(password:String, onPasswordChange:(String)-> Unit){
+    var passVisible by remember { mutableStateOf(false) }
+    OutlinedTextField(
+        value = password,
+        onValueChange = onPasswordChange,
+        label = { Text("Contraseña") },
+        visualTransformation = if (passVisible) VisualTransformation.None else PasswordVisualTransformation(),
+        trailingIcon = {
+            IconToggleButton(
+                checked = passVisible,
+                onCheckedChange = { passVisible = it }
+            ) {
+                Icon(
+                    imageVector = if (passVisible) Icons.Default.VisibilityOff else Icons.Default.Visibility,
+                    contentDescription = null
+                )
+            }
         }
-        Button(
-            onClick ={ exitProcess(0)},
-        ){
-            Text(text = "Salir")
-        }
-    }
+    )
 }
+
+fun Boton(){}
